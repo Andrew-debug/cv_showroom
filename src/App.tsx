@@ -10,12 +10,15 @@ import {
 
 import Home from "./components/Home";
 import About from "./components/About";
+import MinerGame from "./pages/MinerGame/MinerGame";
 
 const rootRoute = createRouteConfig({
   component: () => (
     <>
       <div>
-        <Link to="/">Home</Link> <Link to="/about">About</Link>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/miner_game">Miner Game</Link>
       </div>
       <hr />
       <Outlet />
@@ -23,17 +26,20 @@ const rootRoute = createRouteConfig({
   ),
 });
 
-const homeRoute = rootRoute.createRoute({
-  path: "/",
-  component: Home,
-});
-
-const aboutRoute = rootRoute.createRoute({
-  path: "/about",
-  component: About,
-});
-
-const routeConfig = rootRoute.addChildren([homeRoute, aboutRoute]);
+const routeConfig = rootRoute.addChildren([
+  rootRoute.createRoute({
+    path: "/",
+    component: Home,
+  }),
+  rootRoute.createRoute({
+    path: "/about",
+    component: About,
+  }),
+  rootRoute.createRoute({
+    path: "/miner_game",
+    component: MinerGame,
+  }),
+]);
 
 const router = createReactRouter({ routeConfig });
 
